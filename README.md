@@ -2,6 +2,10 @@
 
 I took the Confogl source files from the L4D2-Competitive-Rework repo and merged the changes on top of epilimic's [confoglcompmod repo](https://github.com/epilimic/confoglcompmod). I also added the SourceMod 1.7.3 plugin compiler and all the necessary includes required to build confoglcompmod.sp.
 
+**Server4Dead-Project branch**
+
+Reverted some changes from L4D2-Competitive-Rework to get an identical decompilation of the confoglcompmod.smx in [Server4Dead-Project repo](https://github.com/SirPlease/Server4Dead-Project)
+
 #Confogl 2.2.3#
 
 ##Confogl is a configurable competitive server plugin that aims to balance the Left 4 Dead 2 multiplayer gameplay.##

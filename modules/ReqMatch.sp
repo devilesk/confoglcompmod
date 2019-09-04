@@ -1,7 +1,5 @@
 #pragma semicolon 1
 #include <sourcemod>
-#include <l4d2_changelevel>
-#include <builtinvotes>
 #include <sdktools>
 
 #define			RM_DEBUG					0
@@ -117,9 +115,7 @@ RM_Match_Load()
 		
 		SetConVarInt(RM_hReloaded,1);
 		GetConVarString(RM_hConfigFile_Plugins,sBuffer,sizeof(sBuffer));
-		ExecuteCfg("generalfixes.cfg");
 		ExecuteCfg(sBuffer);
-		ExecuteCfg("sharedplugins.cfg");
 		return;
 	}
 	
@@ -192,7 +188,7 @@ public Action:RM_Match_MapRestart_Timer(Handle:timer)
 	
 	decl String:sBuffer[128];
 	GetCurrentMap(sBuffer,sizeof(sBuffer));
-	L4D2_ChangeLevel(sBuffer);
+	ServerCommand("changelevel %s",sBuffer);
 	RM_bIsMapRestarted = true;
 }
 
@@ -216,9 +212,6 @@ RM_UpdateCfgOn(const String:cfgfile[])
 public Action:RM_Cmd_ForceMatch(client, args)
 {
 	if(RM_bIsMatchModeLoaded) { return Plugin_Handled; }
-
-	// Prevent Crash due to a Builtinvote being up.
-	if (IsBuiltinVoteInProgress()) { return Plugin_Handled; }
 	
 	if(RM_DEBUG || IsDebugEnabled())
 		LogMessage("%s Match mode forced to load!",RM_DEBUG_PREFIX);
