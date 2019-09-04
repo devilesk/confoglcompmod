@@ -132,11 +132,11 @@ RM_Match_Load()
 	RM_bIsMatchModeLoaded = true;
 	IsPluginEnabled(true,true);
 	
-	PrintToChatAll("\x01[\x05Confogl\x01] Match mode loaded!");
+	CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Match mode loaded!");
 	
 	if(!RM_bIsMapRestarted && GetConVarBool(RM_hDoRestart))
 	{
-		PrintToChatAll("\x01[\x05Confogl\x01] Restarting map!");
+		CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Restarting map!");
 		CreateTimer(MAPRESTARTTIME,RM_Match_MapRestart_Timer);
 	}
 	
@@ -171,7 +171,7 @@ RM_Match_Unload(bool:bForced=false)
 	Call_StartForward(RM_hFwdMatchUnload);
 	Call_Finish();	
 
-	PrintToChatAll("\x01[\x05Confogl\x01] Match mode unloaded!");
+	CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Match mode unloaded!");
 	
 	GetConVarString(RM_hConfigFile_Off,sBuffer,sizeof(sBuffer));
 	ExecuteCfg(sBuffer);
@@ -196,7 +196,7 @@ RM_UpdateCfgOn(const String:cfgfile[])
 {
 	if(SetCustomCfg(cfgfile))
 	{
-		PrintToChatAll("\x01[\x05Confogl\x01] Using \"\x04%s\x01\" config.", cfgfile);
+		CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Loading {olive}%s", cfgfile);
 		if(RM_DEBUG || IsDebugEnabled())
 		{
 			LogMessage("%s Starting match on config %s", RM_DEBUG_PREFIX, cfgfile);
@@ -204,7 +204,7 @@ RM_UpdateCfgOn(const String:cfgfile[])
 	}
 	else
 	{
-		PrintToChatAll("\x01[\x05Confogl\x01] Config \"\x04%s\x01\" not found, using default config!", cfgfile);
+		CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Config \"{green}%s{default}\" not found, using default config!", cfgfile);
 	}
 
 }

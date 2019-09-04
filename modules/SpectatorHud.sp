@@ -124,7 +124,7 @@ SH_SpecHUD_Update() {
 		
 		if(g_bSH_SpecHUD_ShowHint[client]) {
 			g_bSH_SpecHUD_ShowHint[client] = false;
-			PrintToChat(client,"\x01[\x05Confogl\x01] Say \x05/spechud \x01to toggle the Spectator HUD.");
+			CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Say \"{olive}/spechud{default}\" to toggle the {blue}Spectator HUD");
 		}
 	}
 }

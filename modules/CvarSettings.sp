@@ -1,5 +1,4 @@
 #define CVS_CVAR_MAXLEN 64
-
 #define CVARS_DEBUG		0
 
 enum CVSEntry
@@ -252,6 +251,6 @@ public CVS_ConVarChange(Handle:convar, const String:oldValue[], const String:new
 	{
 		decl String:name[CVS_CVAR_MAXLEN];
 		GetConVarName(convar, name, sizeof(name));
-		PrintToChatAll("!!! [Confogl] Tracked Server CVar \"%s\" changed from \"%s\" to \"%s\" !!!", name, oldValue, newValue);
+		CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Tracked Server CVar \"{green}%s{default}\" changed from \"{blue}%s{default}\" to \"{blue}%s{default}\"", name, oldValue, newValue);
 	}
 }

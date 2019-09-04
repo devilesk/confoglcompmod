@@ -54,7 +54,7 @@ public Action:WC_PlayerUse_Event(Handle:event, const String:name[], bool:dontBro
 			if (IsValidEdict(primary))
 			{
 				RemovePlayerItem(client, primary);
-				PrintToChat(client, "\x01[\x05Confogl\x01] Maximum \x04%d \x01sniping rifle(s) is enforced.", WC_iLimitCount);
+				CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Maximum {blue}%d {olive}sniping rifle(s) {default}is enforced.", WC_iLimitCount);
 			}
 			
 			if (WC_iLastClient == client)

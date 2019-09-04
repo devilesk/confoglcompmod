@@ -15,6 +15,7 @@
 #include <socket>
 #include <sdkhooks>
 #include <left4downtown>
+#include <colors>
 #include "includes/constants.sp"
 #include "includes/functions.sp"
 #include "includes/debug.sp"
