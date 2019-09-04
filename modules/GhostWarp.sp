@@ -63,24 +63,24 @@ public Action:GW_Cmd_WarpToSurvivor(client,args)
     decl String:buffer[2];
     GetCmdArg(1, buffer, 2);
     if(strlen(buffer) == 0){return Plugin_Handled;}
-    new char = (StringToInt(buffer));
+    new charz = (StringToInt(buffer));
        
-    GW_WarpToSurvivor(client,char);
+    GW_WarpToSurvivor(client,charz);
        
     return Plugin_Handled;
 }
  
-GW_WarpToSurvivor(client,char)
+GW_WarpToSurvivor(client,charz)
 {
     decl target;
        
-    if(char <= 0)
+    if(charz <= 0)
     {
         target = GW_FindNextSurvivor(client,GW_iLastTarget[client]);
     }
-    else if(char <= 4)
+    else if(charz <= 4)
     {
-        target = GetSurvivorIndex(char-1);
+        target = GetSurvivorIndex(charz-1);
     }
     else
     {
@@ -101,7 +101,7 @@ GW_WarpToSurvivor(client,char)
     return;
 }
  
-GW_FindNextSurvivor(client,char)
+GW_FindNextSurvivor(client,charz)
 {
     if (!IsAnySurvivorsAlive())
     {
@@ -109,13 +109,13 @@ GW_FindNextSurvivor(client,char)
     }
    
     new havelooped = false;
-    char++;
-    if (char >= NUM_OF_SURVIVORS)
+    charz++;
+    if (charz >= NUM_OF_SURVIVORS)
     {
-        char = 0;
+        charz = 0;
     }
    
-    for(new index = char;index<MaxClients;index++)
+    for(new index = charz;index<MaxClients;index++)
     {
         if (index >= NUM_OF_SURVIVORS)
         {
