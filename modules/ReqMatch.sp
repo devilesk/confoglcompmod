@@ -115,7 +115,9 @@ RM_Match_Load()
 		
 		SetConVarInt(RM_hReloaded,1);
 		GetConVarString(RM_hConfigFile_Plugins,sBuffer,sizeof(sBuffer));
+		ExecuteCfg("generalfixes.cfg");
 		ExecuteCfg(sBuffer);
+		ExecuteCfg("sharedplugins.cfg");
 		return;
 	}
 	
