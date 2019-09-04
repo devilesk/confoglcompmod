@@ -38,7 +38,7 @@
 #include "modules/ScoreMod.sp"
 #include "modules/FinaleSpawn.sp"
 #include "modules/BossSpawning.sp"
-#include "modules/WeaponCustomization.sp"
+//#include "modules/WeaponCustomization.sp"
 #include "modules/l4dt_forwards.sp"
 #include "modules/ClientSettings.sp"
 #include "modules/ItemTracking.sp"
@@ -78,7 +78,7 @@ public OnPluginStart()
 	SM_OnModuleStart();
 	FS_OnModuleStart();
 	BS_OnModuleStart();
-	WC_OnModuleStart();
+	//WC_OnModuleStart();
 	CLS_OnModuleStart();
 	IT_OnModuleStart();
 	//SH_OnModuleStart();
