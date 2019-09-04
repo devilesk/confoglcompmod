@@ -302,8 +302,3 @@ RM_ResetMatchRequest()
 	RM_bMatchRequest[0] = false;
 	RM_bMatchRequest[1] = false;
 }
-
-bool:IsAMatchActive()
-{
-	return RM_bIsAMatchActive;
-}

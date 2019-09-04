@@ -34,7 +34,6 @@
 #include "modules/UnprohibitBosses.sp"
 #include "modules/PasswordSystem.sp"
 #include "modules/BotKick.sp"
-#include "modules/CheckVersion.sp"
 #include "modules/EntityRemover.sp"
 #include "modules/ScoreMod.sp"
 #include "modules/FinaleSpawn.sp"
@@ -75,7 +74,6 @@ public OnPluginStart()
 	UB_OnModuleStart();
 	
 	BK_OnModuleStart();
-	CV_OnModuleStart();
 	
 	SM_OnModuleStart();
 	FS_OnModuleStart();
@@ -126,7 +124,6 @@ public OnMapEnd()
 {
 	MI_OnMapEnd();
 	WI_OnMapEnd();
-	
 	PS_OnMapEnd();
 	WS_OnMapEnd();
 }
@@ -148,7 +145,6 @@ public OnClientPutInServer(client)
 	RM_OnClientPutInServer();
 	UL_OnClientPutInServer();
 	PS_OnClientPutInServer(client);
-	CV_OnClientPutInServer();
 }
 
 public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:angles[3], &weapon)
