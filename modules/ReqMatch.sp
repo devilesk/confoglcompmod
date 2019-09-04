@@ -1,5 +1,6 @@
 #pragma semicolon 1
 #include <sourcemod>
+#include <l4d2_changelevel>
 #include <builtinvotes>
 #include <sdktools>
 
@@ -191,7 +192,7 @@ public Action:RM_Match_MapRestart_Timer(Handle:timer)
 	
 	decl String:sBuffer[128];
 	GetCurrentMap(sBuffer,sizeof(sBuffer));
-	ServerCommand("changelevel %s",sBuffer);
+	L4D2_ChangeLevel(sBuffer);
 	RM_bIsMapRestarted = true;
 }
 
