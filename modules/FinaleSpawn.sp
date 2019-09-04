@@ -48,7 +48,7 @@ public OnClientPostAdminCheck(client)
 
 public HookCallback(client)
 {
-	if (!FS_bEnabled || !IsPluginEnabled) return;
+	if (!FS_bEnabled) return;
 	if (!FS_bIsFinale) return;
 	if (GetClientTeam(client) != TEAM_INFECTED) return;
 	if (GetEntProp(client,Prop_Send,"m_isGhost",1) != 1) return;
