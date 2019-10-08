@@ -213,16 +213,13 @@ RM_UpdateCfgOn(const String:cfgfile[])
 	if(SetCustomCfg(cfgfile))
 	{
 		CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Loading {olive}%s", cfgfile);
+		RM_Match_Load();
+
 		if(RM_DEBUG || IsDebugEnabled())
 		{
 			LogMessage("%s Starting match on config %s", RM_DEBUG_PREFIX, cfgfile);
 		}
 	}
-	else
-	{
-		CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Config \"{green}%s{default}\" not found, using default config!", cfgfile);
-	}
-
 }
 
 public Action:RM_Cmd_ForceMatch(client, args)
@@ -243,10 +240,8 @@ public Action:RM_Cmd_ForceMatch(client, args)
 	}
 	else
 	{
-		SetCustomCfg("");
+		CPrintToChat(client, "{blue}[{default}Confogl{blue}] {default}Please specify a {olive}Config {default}to load.");
 	}
-	
-	RM_Match_Load();
 	
 	return Plugin_Handled;
 }
