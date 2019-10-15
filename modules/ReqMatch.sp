@@ -1,5 +1,6 @@
 #pragma semicolon 1
 #include <sourcemod>
+#include <builtinvotes>
 #include <sdktools>
 
 #define			RM_DEBUG					0
@@ -188,7 +189,10 @@ public Action:RM_Match_MapRestart_Timer(Handle:timer)
 	
 	decl String:sBuffer[128];
 	GetCurrentMap(sBuffer,sizeof(sBuffer));
-	ServerCommand("changelevel %s",sBuffer);
+	if (g_L4D2ChangeLevelAvailable)
+		L4D2_ChangeLevel(sBuffer);
+	else
+		ServerCommand("changelevel %s",sBuffer);
 	RM_bIsMapRestarted = true;
 }
 
@@ -197,21 +201,21 @@ RM_UpdateCfgOn(const String:cfgfile[])
 	if(SetCustomCfg(cfgfile))
 	{
 		CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Loading {olive}%s", cfgfile);
+		RM_Match_Load();
+
 		if(RM_DEBUG || IsDebugEnabled())
 		{
 			LogMessage("%s Starting match on config %s", RM_DEBUG_PREFIX, cfgfile);
 		}
 	}
-	else
-	{
-		CPrintToChatAll("{blue}[{default}Confogl{blue}] {default}Config \"{green}%s{default}\" not found, using default config!", cfgfile);
-	}
-
 }
 
 public Action:RM_Cmd_ForceMatch(client, args)
 {
 	if(RM_bIsMatchModeLoaded) { return Plugin_Handled; }
+
+	// Prevent Crash due to a Builtinvote being up.
+	if (IsBuiltinVoteInProgress()) { return Plugin_Handled; }
 	
 	if(RM_DEBUG || IsDebugEnabled())
 		LogMessage("%s Match mode forced to load!",RM_DEBUG_PREFIX);
@@ -224,10 +228,8 @@ public Action:RM_Cmd_ForceMatch(client, args)
 	}
 	else
 	{
-		SetCustomCfg("");
+		CPrintToChat(client, "{blue}[{default}Confogl{blue}] {default}Please specify a {olive}Config {default}to load.");
 	}
-	
-	RM_Match_Load();
 	
 	return Plugin_Handled;
 }

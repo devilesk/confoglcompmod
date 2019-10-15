@@ -3,7 +3,7 @@
 #if defined(AUTOVERSION)
 #include "version.inc"
 #else
-#define PLUGIN_VERSION	"2.2.3"
+#define PLUGIN_VERSION	"2.2.4"
 #endif
 
 #if !defined(DEBUG_ALL)
@@ -12,10 +12,15 @@
 
 #include <sourcemod>
 #include <sdktools>
-#include <socket>
 #include <sdkhooks>
 #include <left4downtown>
 #include <colors>
+#undef REQUIRE_PLUGIN
+#include <l4d2_changelevel>
+#define REQUIRE_PLUGIN
+
+new bool:g_L4D2ChangeLevelAvailable = false;
+
 #include "includes/constants.sp"
 #include "includes/functions.sp"
 #include "includes/debug.sp"
@@ -48,9 +53,22 @@ public Plugin:myinfo =
 {
 	name = "Confogl's Competitive Mod",
 	author = "Confogl Team",
-	description = "A competitive mod for L4D2",
+	description = "A competitive mod for L4D2. RL4D2L fork.",
 	version = PLUGIN_VERSION,
-	url = "http://confogl.googlecode.com/"
+	url = "https://github.com/devilesk/confoglcompmod"
+}
+
+public OnAllPluginsLoaded()
+{
+	g_L4D2ChangeLevelAvailable = LibraryExists("l4d2_changelevel");
+}
+public OnLibraryRemoved(const String:name[])
+{
+	if ( StrEqual(name, "l4d2_changelevel") ) { g_L4D2ChangeLevelAvailable = false; }
+}
+public OnLibraryAdded(const String:name[])
+{
+	if ( StrEqual(name, "l4d2_changelevel") ) { g_L4D2ChangeLevelAvailable = true; }
 }
 
 public OnPluginStart()
